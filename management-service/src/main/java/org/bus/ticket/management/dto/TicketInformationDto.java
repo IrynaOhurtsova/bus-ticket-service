@@ -1,17 +1,22 @@
 package org.bus.ticket.management.dto;
 
+import lombok.Builder;
 import lombok.Data;
+import lombok.Value;
 
 import java.time.LocalTime;
+import java.util.UUID;
 
-@Data
+@Value
+@Builder
 public class TicketInformationDto {
 
-    private String departureStation;
-    private String destinationStation;
-    private LocalTime time;
-    private Double price;
-    private Integer freePlaces;
-    private PaymentStatus paymentStatus;
+    long id;
+    String departureStation;
+    String destinationStation;
+    LocalTime time;
+    double price;
+    int freePlaces;
+    PaymentStatus paymentStatus;
 
 }

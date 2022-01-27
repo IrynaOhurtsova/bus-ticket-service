@@ -1,25 +1,32 @@
 package org.bus.ticket.management.entity;
 
+import lombok.Builder;
 import lombok.Data;
+import org.springframework.data.annotation.Id;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import java.time.LocalTime;
-import java.util.UUID;
 
-@Entity
 @Data
+@Builder(toBuilder = true)
 public class Journey {
 
     @Id
-    @GeneratedValue
-    @Column(length = 16)
-    private UUID id;
-    private String departureStation;
-    private String destinationStation;
-    private LocalTime time;
-    private Double price;
-    private Integer freePlaces;
+    long id;
+    String departureStation;
+    String destinationStation;
+    LocalTime time;
+    double price;
+    int freePlaces;
+
+    public Journey decreaseFreePlaces() {
+        return this.toBuilder()
+                .freePlaces(freePlaces - 1)
+                .build();
+    }
+
+    public Journey increaseFreePlaces() {
+        return this.toBuilder()
+                .freePlaces(freePlaces + 1)
+                .build();
+    }
 }

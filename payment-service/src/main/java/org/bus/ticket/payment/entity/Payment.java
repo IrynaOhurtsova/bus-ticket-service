@@ -1,23 +1,18 @@
 package org.bus.ticket.payment.entity;
 
+import lombok.Builder;
 import lombok.Data;
+import org.springframework.data.annotation.Id;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import java.util.UUID;
-
-@Entity
 @Data
+@Builder(toBuilder = true)
 public class Payment {
 
     @Id
-    @GeneratedValue
-    @Column(length = 16)
-    private UUID id;
-    private String lastName;
-    private String firstName;
-    private String patronymic;
-    private Double sum;
+    long id;
+    String lastName;
+    String firstName;
+    String patronymic;
+    double sum;
+    PaymentStatus paymentStatus;
 }

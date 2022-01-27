@@ -1,9 +1,8 @@
 package org.bus.ticket.management.repository;
 
 import org.bus.ticket.management.entity.Journey;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 
-import java.util.UUID;
+public interface JourneyRepository extends CrudRepository<Journey, Long> {
 
-public interface JourneyRepository extends JpaRepository<Journey, UUID> {
 }
