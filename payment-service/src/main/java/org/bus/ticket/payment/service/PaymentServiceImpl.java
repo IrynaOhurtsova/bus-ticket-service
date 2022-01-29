@@ -6,6 +6,7 @@ import org.bus.ticket.payment.entity.Payment;
 import org.bus.ticket.payment.entity.PaymentStatus;
 import org.bus.ticket.payment.repository.PaymentRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -18,6 +19,7 @@ public class PaymentServiceImpl implements PaymentService {
     private final PaymentRepository paymentRepository;
 
     @Override
+    @Transactional
     public long buyTicket(PayTicketDto payTicketDto) {
         Payment payment = Payment.builder()
                 .lastName(payTicketDto.getLastName())

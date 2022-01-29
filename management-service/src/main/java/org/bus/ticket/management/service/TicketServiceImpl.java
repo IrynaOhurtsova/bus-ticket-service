@@ -28,7 +28,7 @@ public class TicketServiceImpl implements TicketService {
     @Override
     @Transactional
     public Ticket buyTicket(BuyTicketDto buyTicketDto) {
-        Journey journey = journeyRepository.findById(buyTicketDto.getJourneyId())
+        Journey journey = journeyRepository.findByIdForUpdate(buyTicketDto.getJourneyId())
                 .orElseThrow(() -> new IllegalArgumentException(format("journey with id %s not found", buyTicketDto.getJourneyId())))
                 .decreaseFreePlaces();
         if (journey.getFreePlaces() < 0) {

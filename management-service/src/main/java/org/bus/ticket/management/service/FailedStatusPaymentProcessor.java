@@ -17,7 +17,7 @@ public class FailedStatusPaymentProcessor implements PaymentProcessor {
     @Override
     public Payment process(Payment payment) {
         Ticket ticket = ticketService.findTicketByPaymentId(payment.getId());
-        Journey journey = journeyRepository.findById(ticket.getJourneyId())
+        Journey journey = journeyRepository.findByIdForUpdate(ticket.getJourneyId())
                 .orElseThrow(IllegalStateException::new)
                 .increaseFreePlaces();
         journeyRepository.save(journey);
